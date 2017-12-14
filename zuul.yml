@@ -1,0 +1,58 @@
+spring:
+  application:
+    name: zuul
+  datasource:
+   tomcat:
+     initial-size: 2
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000 
+server:
+    port: 8765
+
+zuul:
+ routes:
+   authServer:
+     path: /auth-service/**
+     sensitiveHeaders:
+     serviceId: auth-service  
+   portalEndpoint:
+     path: /portal/**
+     sensitiveHeaders:
+     serviceId: portal  
+   burnEndpoint:
+     path: /burndown/**
+     sensitiveHeaders:
+     serviceId: burndown
+   permissionsEndpoint:
+     path: /permissions/**
+     sensitiveHeaders:
+     serviceId: permissions
+   profileEndpoint:
+     path: /profile/**
+     sensitiveHeaders:
+     serviceId: profile
+   board-displayEndpoint:
+     path: /board-display/**
+     sensitiveHeaders:
+     serviceId: board-display
+   board-updateEndpoint:
+     path: /board-update/**
+     sensitiveHeaders:
+     serviceId: board-update
+   ticketEndpoint:
+     path: /ticket/**
+     sensitiveHeaders:
+     serviceId: ticket  
+      
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://18.217.187.31:8761/eureka/

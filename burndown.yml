@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: burndown
+  datasource:
+   tomcat:
+     initial-size: 2   
+security:
+ oauth2:
+   resource:
+     accessTokenUri: http://${DOCKER_HOST_IP}:8090/oauth/check_token
+     userAuthorizationUri: http://${DOCKER_HOST_IP}:8090/oauth/authorize
+     userInfoUri: http://${DOCKER_HOST_IP}:8090/user
+     jwt:
+       keyUri: http://${DOCKER_HOST_IP}:8090/oauth/token_key
+server:
+ port: 8001
+      
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://${DOCKER_HOST_IP}:8761/eureka/

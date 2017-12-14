@@ -1,0 +1,21 @@
+server:
+ port: 8090
+
+keystore:
+ password: mySecretKey
+spring:
+  application:
+    name: auth-service
+  mvc:
+    dispatchOptionsRequest: true
+    
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://18.217.187.31:8761/eureka/
+  instance:
+    instanceId: auth-service
+    hostname: 18.217.187.31:8090
+
